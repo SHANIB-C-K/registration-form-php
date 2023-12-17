@@ -1,10 +1,9 @@
 <?php
 //This page is Registration form
 
-
 ?>
 
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -30,7 +29,7 @@
             </form>
 
             <div>
-                <h3>message</h3>
+                <p>message</p>
             </div>
         </div>
     </div>
