@@ -1,4 +1,32 @@
-<!doctype html>
+<?php
+//This page is Login form
+
+include('connection.php');
+
+if (isset($_POST['btn'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+
+    $sql = "SELECT * FROM register WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($num > 0) {
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['password'] = $row['password'];
+        echo "<script>alert('Login Successfully')</script>";
+        header('location: index.php');
+    }else{
+        echo "<script>alert('Username or Password is incorrect! Please try again')</script>";
+    }
+}
+
+
+?>
+
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -20,7 +48,7 @@
                 <div class="mb-3">
                     <input required class="form-control" type="password" name="password" placeholder="Password">
                 </div>
-                <input class="btn btn-primary" value="Login" type="submit">
+                <input class="btn btn-primary" value="Login" type="submit" name="btn">
             </form>
             <div>
                 <p>message</p>

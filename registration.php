@@ -3,7 +3,7 @@
 
 include('connection.php');
 
-if (isset($_POST['username'])) {
+if (isset($_POST['btn'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -14,7 +14,6 @@ if (isset($_POST['username'])) {
     if ($num > 0) {
         echo '<script>alert("username already exist");</script>';
     }else{
-        $hashedPwd = password_hash($password, PASSWORD_BCRYPT);
         $sql = "INSERT INTO register (username, password) VALUES ('$username', '$hashedPwd')";
         mysqli_query($conn, $sql);
         header('location: login.php');
@@ -46,7 +45,7 @@ if (isset($_POST['username'])) {
                 <div class="mb-3">
                     <input required class="form-control" type="password" name="password" placeholder="Password">
                 </div>
-                <input class="btn btn-primary" value="Sign Up" type="submit">
+                <input class="btn btn-primary" value="Sign Up" type="submit" name="btn">
             </form>
 
             <div>
