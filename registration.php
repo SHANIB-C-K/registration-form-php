@@ -3,6 +3,24 @@
 
 include('connection.php');
 
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM register WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+
+    if ($num > 0) {
+        echo '<script>alert("username already exist");</script>';
+    }else{
+        $hashedPwd = password_hash($password, PASSWORD_BCRYPT);
+        $sql = "INSERT INTO register (username, password) VALUES ('$username', '$hashedPwd')";
+        mysqli_query($conn, $sql);
+        header('location: login.php');
+    }
+}
+
 
 ?>
 
