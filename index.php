@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -38,15 +38,18 @@ if (isset($_POST['btn'])) {
 </head>
 
 <body>
+    <div class="d-flex justify-content-end align-items-end p-3">
+        <a href="logout.php"><input type="button" value="logout" class="btn btn-danger"></a>
+    </div>
     <div style="height: 100vh;" class="d-flex justify-content-center align-items-center">
         <div class="col-md-4">
             <form action="" method="post">
                 <h4 class="mb-3">Edit page</h4>
                 <div class="mb-3">
-                    <input required class="form-control" type="text" name="username" value="<?php echo$row['username']; ?>">
+                    <input required class="form-control" type="text" name="username" value="<?php echo $row['username']; ?>">
                 </div>
                 <div class="mb-3">
-                    <input required class="form-control" type="password" name="password" value="<?php echo$row['password']; ?>">
+                    <input required class="form-control" type="password" name="password" value="<?php echo $row['password']; ?>">
                 </div>
                 <input class="btn btn-primary" value="Edit" type="submit" name="btn">
             </form>
@@ -56,4 +59,5 @@ if (isset($_POST['btn'])) {
         </div>
     </div>
 </body>
+
 </html>
