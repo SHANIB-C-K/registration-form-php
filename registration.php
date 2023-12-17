@@ -5,6 +5,8 @@ session_start();
 
 include('connection.php');
 
+$error = "";
+
 if (isset($_SESSION['username'])) {
     header('location: login.php');
 }
@@ -18,9 +20,9 @@ if (isset($_POST['btn'])) {
     $num = mysqli_num_rows($result);
 
     if ($num > 0) {
-        echo '<script>alert("username already exist");</script>';
-    }else{
-        $sql = "INSERT INTO register (username, password) VALUES ('$username', '$hashedPwd')";
+        $error = "Username already exist";
+    } else {
+        $sql = "INSERT INTO register (username, password) VALUES ('$username', '$password')";
         mysqli_query($conn, $sql);
         header('location: login.php');
     }
@@ -51,11 +53,14 @@ if (isset($_POST['btn'])) {
                 <div class="mb-3">
                     <input required class="form-control" type="password" name="password" placeholder="Password">
                 </div>
+                <div>
+                    <p>you have already a account <a href="login.php">Login page</a></p>
+                </div>
                 <input class="btn btn-primary" value="Sign Up" type="submit" name="btn">
             </form>
 
-            <div>
-                <p>message</p>
+            <div class="text-danger pt-3">
+                <?php echo $error; ?>
             </div>
         </div>
     </div>
