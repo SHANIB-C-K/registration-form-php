@@ -1,7 +1,13 @@
 <?php
 //This page is Login form
 
+session_start();
+
 include('connection.php');
+
+if (isset($_SESSION['username'])) {
+    header('location: index.php');
+}
 
 if (isset($_POST['btn'])) {
     $username = $_POST['username'];
@@ -18,7 +24,7 @@ if (isset($_POST['btn'])) {
         $_SESSION['password'] = $row['password'];
         echo "<script>alert('Login Successfully')</script>";
         header('location: index.php');
-    }else{
+    } else {
         echo "<script>alert('Username or Password is incorrect! Please try again')</script>";
     }
 }
@@ -56,4 +62,5 @@ if (isset($_POST['btn'])) {
         </div>
     </div>
 </body>
+
 </html>
