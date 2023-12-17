@@ -1,6 +1,9 @@
 <?php
 //This page is Registration form
 
+include('connection.php');
+
+
 ?>
 
 <!Doctype html>
