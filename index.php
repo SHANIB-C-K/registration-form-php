@@ -24,7 +24,7 @@ if (isset($_POST['edit'])) {
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        $error = "Edited successfully";
+        $error = "Edited successfully. Refresh the page to update the value";
     }
 }
 
@@ -48,7 +48,7 @@ if (isset($_POST['edit'])) {
         <fieldset>
             <div style="height: 100vh;" class="d-flex justify-content-center align-items-center">
                 <div class="col-md-4">
-                    <h3 style="text-align: center; padding-bottom: 30px; color: green;">Welcome</h3>
+                    <h3 style="text-align: center; padding-bottom: 30px; color: green;">Welcome <?php echo $row['username']; ?></h3>
                     <form action="" method="post">
                         <h4 class="mb-3">Edit page</h4>
                         <div class="mb-3">
