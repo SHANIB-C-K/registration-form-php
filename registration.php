@@ -6,7 +6,6 @@ session_start();
 include('connection.php');
 
 $error = "";
-$captcha = "";
 
 if (isset($_SESSION['username'])) {
     header('location: login.php');
