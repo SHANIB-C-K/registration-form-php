@@ -6,6 +6,7 @@ session_start();
 include('connection.php');
 
 $error = "";
+$captcha = "";
 
 if (isset($_SESSION['username'])) {
     header('location: login.php');
@@ -39,6 +40,8 @@ if (isset($_POST['btn'])) {
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Sign Up</title>
 </head>
 
@@ -56,7 +59,10 @@ if (isset($_POST['btn'])) {
                 <div>
                     <p>you have already a account <a href="login.php">Login page</a></p>
                 </div>
-                <input class="btn btn-primary" value="Sign Up" type="submit" name="btn">
+                <div class="g-recaptcha" data-sitekey="6LdPODUpAAAAAA_9ZH_UGGE182Si9ezQv-Y6i5s5"></div>
+                <div class="pt-3">
+                <input class="btn btn-primary" value="Sign Up" type="submit" name="btn" id="btn">
+                </div>
             </form>
 
             <div class="text-danger pt-3">
@@ -67,3 +73,13 @@ if (isset($_POST['btn'])) {
 </body>
 
 </html>
+
+<script>
+    $(document).on('click', '#btn', function() {
+        var response = grecaptcha.getResponse();
+        if (response.length == 0) {
+        alert("Please verify you are not a robot");
+            return false;
+        }
+    });
+</script>
