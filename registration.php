@@ -1,11 +1,11 @@
 <?php
 //This page is Registration form
 
-session_start();
+session_start(); //This is session is start
 
-include('connection.php');
+include('connection.php'); //its include connection.php file
 
-$error = "";
+$error = ""; //This variable is error initially empty 
 
 if (isset($_SESSION['username'])) {
     header('location: login.php');
@@ -16,20 +16,26 @@ if (isset($_POST['btn'])) {
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM register WHERE username = '$username'";
+    //This is a query of data fetch in database
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
+    //this check how much datas available in databases and store num variable 
 
     if ($num > 0) {
         $error = "Username already exist";
+        //its check num is greater than zero its true print Username already exists 
     } else {
+        //else this code is exicute
         $sql = "INSERT INTO register (username, password) VALUES ('$username', '$password')";
+        //This query is insert into datas into database 
         mysqli_query($conn, $sql);
-        header('location: login.php');
+        header('location: login.php'); //header means redirect in page
     }
 }
 
 
 ?>
+    <? // 🚨This area is Html and css and javascript code🚨 ?>
 
 <!Doctype html>
 <html lang="en">
@@ -65,7 +71,7 @@ if (isset($_POST['btn'])) {
             </form>
 
             <div class="text-danger pt-3">
-                <?php echo $error; ?>
+                <?php echo $error; //This area is print in error messages ?>
             </div>
         </div>
     </div>
@@ -74,6 +80,7 @@ if (isset($_POST['btn'])) {
 </html>
 
 <script>
+//This is a javascript code in captcha validation
     $(document).on('click', '#btn', function() {
         var response = grecaptcha.getResponse();
         if (response.length == 0) {
@@ -82,3 +89,5 @@ if (isset($_POST['btn'])) {
         }
     });
 </script>
+
+<? // ✅ code is completes ✅ ?>
