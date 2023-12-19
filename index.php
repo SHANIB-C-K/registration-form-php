@@ -13,8 +13,11 @@ if (!isset($_SESSION['username'])) {
 }
 
 $sql = "SELECT * FROM register WHERE username = '{$_SESSION['username']}'";
+//its query of data retrieval from MySQL database 
 $result = mysqli_query($conn, $sql);
+// its query stored in its variable 
 $row = mysqli_fetch_assoc($result);
+// after fetch values
 
 
 if (isset($_POST['edit'])) {
@@ -22,15 +25,21 @@ if (isset($_POST['edit'])) {
     $password = $_POST['password'];
 
     $sql = "UPDATE `register` SET `username` = '$username',`password` = '$password' WHERE username = '{$_SESSION['username']}'";
+    //it is a Update a data in MySQL database query 
 
     $result = mysqli_query($conn, $sql);
+    //after the updated values stored in its variable 
 
     if ($result) {
         $error = "Edited successfully. Refresh the page to update the value";
+        //it is print edited successfull message 
     }
 }
 
 ?>
+
+
+<?php //This is html and css and javascript code ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +74,7 @@ if (isset($_POST['edit'])) {
                     </form>
 
                     <div class="pt-3 text-success">
-                        <?php echo $error; ?>
+                        <?php echo $error; //This is error message printing place ?>
                     </div>
                 </div>
         </fieldset>
@@ -73,3 +82,7 @@ if (isset($_POST['edit'])) {
 </body>
 
 </html>
+
+
+
+<? // ✅Finally this program is completed ✅ ?>
