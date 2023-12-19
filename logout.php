@@ -8,4 +8,8 @@ session_destroy(); //This is a session destroying section
 
 header('location: login.php'); //After redirect in login.php file
 
+
+
+
+// ✅ program completed ✅
 ?>
