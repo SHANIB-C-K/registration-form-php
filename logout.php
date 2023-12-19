@@ -1,9 +1,11 @@
 <?php
 
-session_start();
+//This is a logout page
 
-session_destroy();
+session_start(); //This is a session start
 
-header('location: login.php');
+session_destroy(); //This is a session destroying section
+
+header('location: login.php'); //After redirect in login.php file
 
 ?>
