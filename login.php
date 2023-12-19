@@ -1,10 +1,12 @@
 <?php
 
-session_start();
+//This page is login page using php language 
 
-include('connection.php');
+session_start(); //This is a session start
 
-$error = "";
+include('connection.php'); //This including in connection.php this file is means connect to mysql database 
+
+$error = ""; // error message initially null 
 
 if (isset($_SESSION['username'])) {
     header('location: index.php');
@@ -15,21 +17,23 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM register WHERE username = '$username' and password = '$password'";
+    //This is query to retrieve datas in mysql database 
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     $row = mysqli_fetch_assoc($result);
 
     if ($num > 0) {
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['password'] = $row['password'];
-        header('location: index.php');
+        $_SESSION['username'] = $row['username']; //👇👇👇👇
+        $_SESSION['password'] = $row['password']; //This is a created in session variables 
+        header('location: index.php'); //after redirect index.php file
     } else {
-        $error = "Username and password doesn't match";
+        $error = "Username and password doesn't match"; //This is a error message create
     }
 }
 
 ?>
 
+    <?php //This is html and css and javascript codes ?>
 
 <!Doctype html>
 <html lang="en">
@@ -66,7 +70,7 @@ if (isset($_POST['login'])) {
             </form>
 
             <div class="pt-3 text-danger">
-                <?php echo $error; ?>
+                <?php echo $error; //This is a error printing place ?> 
             </div>
         </div>
 </body>
@@ -83,3 +87,7 @@ if (isset($_POST['login'])) {
     });
     
 </script>
+
+
+
+<?php //✅login.php file is completed ✅ ?>
