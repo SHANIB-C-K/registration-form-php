@@ -1,10 +1,12 @@
 <?php
 
-session_start();
+//This is a main page this program
 
-include('connection.php');
+session_start(); //it is session start
 
-$error = "";
+include('connection.php'); //its connecting to connection.php file
+
+$error = ""; //its error variable its initially null
 
 if (!isset($_SESSION['username'])) {
     header('location:login.php');
